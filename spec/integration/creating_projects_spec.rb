@@ -7,5 +7,9 @@ feature 'Creating Projects' do
     fill_in 'Name', :with => 'TextMate 2'
     click_button 'Create Project'
     page.should have_content('Project has been created.')
+
+    project = Project.find_by_name("TextMate 2")
+    page.current_url.should == project_url(project)
+    find("title").should have_content("TextMate 2 - Projects - Ticketee")
   end
 end
