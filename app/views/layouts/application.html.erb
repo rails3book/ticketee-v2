@@ -13,6 +13,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <%= link_to "Sign up", new_user_registration_path %>
+</nav>
 <% flash.each do |key, value| %>
   <div class='flash' id='<%= key %>'>
     <%= value %>
