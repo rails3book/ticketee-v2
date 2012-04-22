@@ -48,7 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    devise (2.0.4)
+    devise (2.1.0.rc)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
@@ -156,7 +156,7 @@ PLATFORMS
 DEPENDENCIES
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.1)
-  devise (~> 2.0.4)
+  devise (= 2.1.0.rc)
   dynamic_form (= 1.1.4)
   email_spec (= 1.2.1)
   factory_girl (= 2.6.4)

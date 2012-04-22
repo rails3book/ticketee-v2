@@ -29,7 +29,6 @@ feature "Creating Users" do
   scenario "Creating an admin user" do
     fill_in "Email", :with => "admin@example.com"
     fill_in "Password", :with => "password"
-    save_and_open_page
     check "Is an admin?"
     click_button "Create User"
     page.should have_content("User has been created")
