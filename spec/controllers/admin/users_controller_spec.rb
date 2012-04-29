@@ -4,9 +4,7 @@ describe Admin::UsersController do
   let(:user) { Factory(:confirmed_user) }
 
   context "standard users" do
-    before do
-      sign_in(:user, user)
-    end
+    before { sign_in(:user, user) }
 
     it "are not able to access the index action" do
       get 'index'
