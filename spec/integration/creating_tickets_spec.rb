@@ -2,18 +2,15 @@ require 'spec_helper'
 
 feature "Creating Tickets" do
   before do
-    Factory(:project, :name => "Internet Explorer")
-    user = Factory(:user, :email => "ticketee@example.com")
-    user.confirm!
+    project = Factory(:project, :name => "Internet Explorer")
+    user = Factory(:confirmed_user, :email => "ticketee@example.com")
+    define_permission!(user, "view", project)
+    sign_in_as!(user)
 
     visit '/'
     click_link "Internet Explorer"
     click_link "New Ticket"
 
-    page.should have_content("You need to sign in or sign up before continuing.")
-    fill_in "Email", :with => "ticketee@example.com"
-    fill_in "Password", :with => "password"
-    click_button "Sign in"
     within("h2") { page.should have_content("New Ticket") }
   end
 
