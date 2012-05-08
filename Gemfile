@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'dynamic_form', '1.1.4'
 gem 'devise', '2.1.0.rc'
+gem 'cancan', '1.6.7'
 
 gem 'sqlite3'
 
