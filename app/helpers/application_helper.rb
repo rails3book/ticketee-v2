@@ -10,4 +10,9 @@ module ApplicationHelper
   def admins_only(&block)
     concat(block.call) if current_user.try(:admin?)
   end
+
+  def authorized?(permission, thing, &block)
+    concat(block.call) if can?(permission.to_sym, thing) ||
+                          current_user.try(:admin?)
+  end
 end
