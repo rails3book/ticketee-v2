@@ -39,4 +39,15 @@ feature "Creating Tickets" do
     page.should have_content("Ticket has not been created.")
     page.should have_content("Description is too short")
   end
+
+  scenario "Creating a ticket with an attachment" do
+    fill_in "Title", :with => "Add documentation for blink tag"
+    fill_in "Description", :with => "The blink tag has a speed attribute"
+    attach_file "File", "spec/fixtures/speed.txt"
+    click_button "Create Ticket"
+    page.should have_content("Ticket has been created.")
+    within("#ticket .asset") do
+      page.should have_content("speed.txt")
+    end
+  end
 end
