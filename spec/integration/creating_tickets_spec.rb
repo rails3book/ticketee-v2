@@ -42,12 +42,16 @@ feature "Creating Tickets" do
 
   scenario "Creating a ticket with an attachment" do
     fill_in "Title", :with => "Add documentation for blink tag"
-    fill_in "Description", :with => "The blink tag has a speed attribute"
-    attach_file "File", "spec/fixtures/speed.txt"
+    fill_in "Description", :with => "The blink tag has an undocumented speed attribute"
+    attach_file "File #1", "spec/fixtures/speed.txt"
+    attach_file "File #2", "spec/fixtures/spin.txt"
+    attach_file "File #3", "spec/fixtures/gradient.txt"
     click_button "Create Ticket"
     page.should have_content("Ticket has been created.")
-    within("#ticket .asset") do
+    within("#ticket .assets") do
       page.should have_content("speed.txt")
+      page.should have_content("spin.txt")
+      page.should have_content("gradient.txt")
     end
   end
 end
