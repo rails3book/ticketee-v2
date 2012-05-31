@@ -2,8 +2,13 @@ Ticketee::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
 
   root :to => "projects#index"
+
   resources :projects do
     resources :tickets
+  end
+
+  resources :tickets do
+    resources :comments
   end
 
   resources :files
