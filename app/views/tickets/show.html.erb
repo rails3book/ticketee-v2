@@ -1,10 +1,10 @@
 <div id='ticket'>
   <h2><%= @ticket.title %></h2>
-  <%= authorized?("edit tickets", @project) do %>
+  <% authorized?("edit tickets", @project) do %>
     <%= link_to "Edit Ticket", [:edit, @project, @ticket] %>
   <% end %>
 
-  <%= authorized?("delete tickets", @project) do %>
+  <% authorized?("delete tickets", @project) do %>
     <%= link_to "Delete Ticket", 
                 project_ticket_path(@project, @ticket),
                 :method => :delete, 
@@ -12,6 +12,7 @@
   <% end %>
 
   <span id='author'>Created by <%= @ticket.user.email %></span>
+  <%= render @ticket.state if @ticket.state %>
   <%= simple_format(@ticket.description) %>
 
   <small>Created by <%= @ticket.user.email %></small>
