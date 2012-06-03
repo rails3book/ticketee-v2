@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :find_states
 
   private
+
+  def find_states
+    @states = State.all
+  end
 
   def authorize_admin!
     authenticate_user!
