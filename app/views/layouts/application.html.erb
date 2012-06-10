@@ -14,16 +14,22 @@
 </head>
 <body>
 <nav>
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <ul class='navbar'>
+    <li><%= link_to "Home", root_path %></li>
     <% admins_only do %>
-      <%= link_to "Admin", admin_root_path %>
+      <li><%= link_to "Admin", admin_root_path %></li>
     <% end %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Sign in", new_user_session_path %>
-  <% end %>
+
+    <li class='login-info'>
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %>
+        <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+    </li>
+  </ul>
 </nav>
 <% flash.each do |key, value| %>
   <div class='flash' id='<%= key %>'>

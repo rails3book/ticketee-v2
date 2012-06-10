@@ -1,13 +1,214 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
-*/
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background: white;
+}
+
+body {
+  font: 13pt "Myriad Pro", Helvetica;
+  margin: 5px 10% 0 10%;
+  color: #333;
+  height: 100%;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+ul {
+  padding: 0px;
+  margin: 0px;
+}
+
+nav {
+  border-radius: 8px;
+  margin: 10px 0 10px 0;
+  padding: 10px;
+
+  background-image: -webkit-linear-gradient(top, rgb(224,224,224) 10%, rgb(190, 190, 190) 90%);
+  border: 1px solid #bababa;
+}
+
+nav ul.navbar {
+  padding-left: 10px;
+  list-style-type: none;
+  display: inline;
+}
+
+nav ul.navbar li {
+  display: inline;
+}
+
+nav .login-info {
+  text-align: right;
+  font-size: 75%;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0055B0;
+  text-decoration: underline;
+}
+
+textarea {
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+input[type=file] {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.flash {
+  padding: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  font-weight: bold;
+}
+
+#notice {
+  background: #85FF00;
+  color: black;
+}
+
+#alert {
+  background: #FF3444;
+}
+
+.sidebar {
+  padding: 10px;
+  background: #efefef;
+  border-radius: 5px;
+  float: right;
+  border: 1px solid #dcdcdc;
+  width: 25%;
+}
+
+.sidebar h4 {
+  color: #9a9a9a;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+ul#tickets {
+  list-style-type: none;
+}
+
+ul#tickets li {
+  margin-bottom: 10px;
+}
+
+#permissions {
+  border: 1px solid #789B2F;
+}
+#permissions td, #permissions th {
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+}
+
+#permissions thead th {
+  background: #DFFF77;
+  border-bottom: 1px solid #789B2F;
+  padding: 10px;
+}
+
+#permissions tr.odd {
+  background: #F0FF91;
+}
+
+#permissions tr.even {
+  background: #C2EC4B;
+}
+
+ul#tickets .state {
+  padding-right: 5px;
+  /*  margin-right: 4em;*/
+}
+
+ul#tickets .state {
+  float: left;
+}
+
+#ticket, .comment {
+  margin: 15px 0 15px 0;
+  padding: 15px;
+  background: #eaeaea;
+  border: 1px solid #e0e0e0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#ticket a {
+  color: #67A300;
+}
+
+#ticket menu {
+  font-size: 75%;
+}
+
+menu, #ticket .state, .states {
+  float: right;
+}
+
+#ticket section {
+  clear: both;
+}
+
+.state {
+  display: inline;
+  width: 4em;
+  text-align: center;
+  font-weight: bold;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin-right: 10px;
+  font-size: 80%;
+  padding: 5px;
+}
+
+#ticket #tags {
+  margin-top: 20px;
+}
+
+#ticket .tag {
+  background: #232323;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  color: white;
+  padding: 8px;
+}
+
+#ticket .tag a {
+  color: white;
+}
+
+#ticket .tag .delete {
+  font-size: 125%;
+  text-decoration: none;
+}
+
+.new_comment {
+  padding: 15px;
+  background: #eaeaea;
+  color: black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.comment, .new_comment {
+  width: 75%;
+}
