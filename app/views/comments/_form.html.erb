@@ -2,14 +2,16 @@
 <%= form_for [@ticket, @comment] do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
+  <%= f.label :text %><br>
+  <%= f.text_area :text %>
   </p>
 
-  <p>
-    <%= f.label :state_id %>
-    <%= f.select :state_id , @states.map { |s| [s.name, s.id] },
-                  :selected => @ticket.state_id %>
-  </p>
+  <% authorized?(:"change states", @project) do %>
+    <p>
+      <%= f.label :state_id %>
+      <%= f.select :state_id, @states.map { |s| [s.name, s.id] },
+        :selected => @ticket.state_id   %>
+    </p>
+  <% end %>
   <%= f.submit %>
 <% end %>
