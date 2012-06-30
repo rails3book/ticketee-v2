@@ -1,68 +1,48 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
 * {
   padding: 0;
   margin: 0;
 }
 
-html {
-  background: white;
-}
-
 body {
-  font: 13pt "Myriad Pro", Helvetica;
-  margin: 5px 10% 0 10%;
-  color: #333;
+  background: white;
+  color: #232323;
+  font: 13pt "Helvetica Neue", Helvetica;
+  margin: 5px 20% 0 20%;
   height: 100%;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
+  padding: 30px;
 }
 
 h1 {
   margin-bottom: 20px;
 }
 
-ul {
-  padding: 0px;
-  margin: 0px;
-}
-
 nav {
-  border-radius: 8px;
   margin: 10px 0 10px 0;
-  padding: 10px;
-
-  background-image: -webkit-linear-gradient(top, rgb(224,224,224) 10%, rgb(190, 190, 190) 90%);
-  border: 1px solid #bababa;
-}
-
-nav ul.navbar {
-  padding-left: 10px;
-  list-style-type: none;
-  display: inline;
-}
-
-nav ul.navbar li {
-  display: inline;
-}
-
-nav .login-info {
-  text-align: right;
-  font-size: 75%;
 }
 
 a {
-  color: #0088cc;
-  text-decoration: none;
+  color: #1B7EE0;
 }
 
-a:hover {
-  color: #0055B0;
-  text-decoration: underline;
-}
-
-textarea {
+input[type=text], textrea {
+  border-top: 1px solid #aaa;
+  border-left: 1px solid #aaa;
   padding: 3px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px 0px;
 }
 
 input[type=file] {
@@ -78,32 +58,45 @@ input[type=file] {
 }
 
 #notice {
-  background: #85FF00;
+  background: #CFFF9C;
   color: black;
 }
 
 #alert {
-  background: #FF3444;
+  background: #FFA3AA;
 }
 
-.sidebar {
-  padding: 10px;
-  background: #efefef;
-  border-radius: 5px;
-  float: right;
-  border: 1px solid #dcdcdc;
-  width: 25%;
+.errorExplanation {
+  font-size: 85%;
+  color: #BF0000;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-.sidebar h4 {
-  color: #9a9a9a;
-}
 
-.sidebar ul {
+ul#projects {
+  margin-top: 1em;
   list-style-type: none;
+  border: 1px solid #D8E1EB;
+  -border-radius: 3px;
+  li {
+    padding: 10px 5px;
+    font-style: italic;
+    color: #8a8a8a;
+
+    &.odd {
+      background: #EDF6FF;
+    }
+
+    h3 {
+      font-style: normal;
+    }
+  }
+
 }
 
 ul#tickets {
+  padding: 15px;
   list-style-type: none;
 }
 
@@ -136,7 +129,6 @@ ul#tickets li {
 
 ul#tickets .state {
   padding-right: 5px;
-  /*  margin-right: 4em;*/
 }
 
 ul#tickets .state {
@@ -157,10 +149,11 @@ ul#tickets .state {
 }
 
 #ticket menu {
+  float: right;
   font-size: 75%;
 }
 
-menu, #ticket .state, .states {
+#ticket .state, .states {
   float: right;
 }
 
