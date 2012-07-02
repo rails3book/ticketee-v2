@@ -7,7 +7,7 @@
   <% @projects.each do |project| %>
     <li class="<%= cycle("odd", "even") %>">
     <h3><%= link_to project.name, project %></h3>
-    Some description goes here.
+    <%= project.description %>
     </li>
   <% end %>
 </ul>
