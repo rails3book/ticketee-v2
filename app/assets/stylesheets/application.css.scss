@@ -38,11 +38,19 @@ a {
   color: #1B7EE0;
 }
 
-input[type=text], textrea {
+input[type=text], input[type=email], input[type=password], textarea {
+  font-size: 125%;
+  border: 0px;
   border-top: 1px solid #aaa;
   border-left: 1px solid #aaa;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   padding: 3px;
   margin: 5px 0px;
+}
+
+textarea {
+  resize: none;
 }
 
 input[type=file] {
@@ -95,6 +103,12 @@ ul#projects {
 
 }
 
+.project {
+  em {
+    color: #8a8a8a;
+  }
+}
+
 ul#tickets {
   padding: 15px;
   list-style-type: none;
@@ -138,14 +152,9 @@ ul#tickets .state {
 #ticket, .comment {
   margin: 15px 0 15px 0;
   padding: 15px;
-  background: #eaeaea;
   border: 1px solid #e0e0e0;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-}
-
-#ticket a {
-  color: #67A300;
 }
 
 #ticket menu {
@@ -192,14 +201,6 @@ ul#tickets .state {
 #ticket .tag .delete {
   font-size: 125%;
   text-decoration: none;
-}
-
-.new_comment {
-  padding: 15px;
-  background: #eaeaea;
-  color: black;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
 .comment, .new_comment {

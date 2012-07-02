@@ -3,7 +3,7 @@
   <%= f.error_messages %>
   <p>
   <%= f.label :text %><br>
-  <%= f.text_area :text %>
+  <%= f.text_area :text, :rows => 3 %>
   </p>
 
   <% authorized?(:"change states", @project) do %>
