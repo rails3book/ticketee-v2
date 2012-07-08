@@ -15,11 +15,17 @@
           :confirm => "Are you sure you want to delete this project?" %></li>
       <% end %>
     </ul>
+    <%= form_tag search_project_tickets_path(@project),
+                  :method => :get do %>
+      <%= label_tag "search" %>
+      <%= text_field_tag "search", params[:search] %>
+      <%= submit_tag "Search" %>
+    <% end %>
   </div>
 
 
   <ul id='tickets'>
-    <% @project.tickets.each do |ticket| %>
+    <% @tickets.each do |ticket| %>
       <li>
         <%= render ticket.state if ticket.state %>
         #<%= ticket.id %> - <%= link_to ticket.title, [@project, ticket] %>

@@ -5,6 +5,7 @@ gem 'dynamic_form', '1.1.4'
 gem 'devise', '2.1.0.rc'
 gem 'cancan', '1.6.7'
 gem 'paperclip', '2.7.0'
+gem 'searcher', :git => "git://github.com/radar/searcher"
 
 gem 'sqlite3'
 
