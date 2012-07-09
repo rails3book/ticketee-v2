@@ -48,4 +48,14 @@ feature "Searching" do
       page.should_not have_content("Create users")
     end
   end
+
+  scenario "Clicking a tag goes to search results" do
+    click_link "Create projects"
+    click_link "iteration_1"
+    within("#tickets") do
+      page.should have_content("Create projects")
+      page.should_not have_content("Create users")
+    end
+  end
+
 end
