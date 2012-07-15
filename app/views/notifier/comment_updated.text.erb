@@ -1,0 +1,7 @@
+<%= @user %> has just updated the <%= @ticket.title %> ticket for
+<%= @ticket.project.name %>. They wrote:
+
+<%= @comment.text %>
+
+You can view this ticket on line by going to: 
+<%= project_ticket_url(@ticket.project, @ticket) %>
