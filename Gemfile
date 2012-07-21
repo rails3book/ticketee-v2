@@ -17,6 +17,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'debugger'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.9'

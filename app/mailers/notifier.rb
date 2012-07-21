@@ -3,9 +3,10 @@ class Notifier < ActionMailer::Base
 
   def comment_updated(comment, user)
     @comment = comment
-    @user = user
+    @user = comment.user
     @ticket = comment.ticket
-    subject = "[ticketee] #{@ticket.project.name} - #{@ticket.title}"
+    @project = @ticket.project
+    subject = "[ticketee] #{@project.name} - #{@ticket.title}"
     mail(:to => user.email, :subject => subject)
   end
 end

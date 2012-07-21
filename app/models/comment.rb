@@ -14,6 +14,7 @@ class Comment < ActiveRecord::Base
   delegate :project, :to => :ticket
 
   after_create :associate_tags_with_ticket
+  after_create :creator_watches_ticket
 
   private
 
@@ -29,11 +30,15 @@ class Comment < ActiveRecord::Base
   def associate_tags_with_ticket
     if tag_names
       tags = tag_names.split(" ").map do |name|
-      Tag.find_or_create_by_name(name)
+        Tag.find_or_create_by_name(name)
       end
       self.ticket.tags += tags
       self.ticket.save
     end
+  end
+
+  def creator_watches_ticket
+    ticket.watchers << user
   end
 end
 
