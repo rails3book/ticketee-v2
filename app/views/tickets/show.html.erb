@@ -30,7 +30,14 @@
     </div>
   <% end %>
 
+  <div id='watchers'>
+    <strong>Watchers:</strong>
+    <%= @ticket.watchers.map(&:email).to_sentence %>
+    <%= toggle_watching_button %>
+  </div>
+
 </div>
+
 
 <h3>Comments</h3>
 <div id='comments'>

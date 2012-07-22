@@ -28,7 +28,7 @@ feature "Ticket Notifications" do
     email = find_email!(alice.email)
     subject = "[ticketee] #{project.name} - #{ticket.title}"
     email.subject.should include(subject)
-    click_first_link_in_email
+    click_first_link_in_email(email)
 
     within("#ticket h2") do
       page.should have_content(ticket.title)

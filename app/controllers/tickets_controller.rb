@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_project
-  before_filter :find_ticket, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_ticket, :only => [:show, :edit, :update, :destroy, :watch]
   before_filter :authorize_create!, :only => [:new, :create]
   before_filter :authorize_update!, :only => [:edit, :update]
   before_filter :authorize_delete!, :only => [:destroy]
@@ -57,12 +57,24 @@ class TicketsController < ApplicationController
     render "projects/show"
   end
 
+  def watch
+    if @ticket.watchers.exists?(current_user)
+      @ticket.watchers -= [current_user]
+      flash[:notice] = "You are no longer watching this ticket."
+    else
+      @ticket.watchers << current_user
+      flash[:notice] = "You are now watching this ticket."
+    end
+
+    redirect_to project_ticket_path(@ticket.project, @ticket)
+  end
+
   private
   def find_project
     @project = Project.for(current_user).find(params[:project_id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The project you were looking for could not be found."
-      redirect_to root_path
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The project you were looking for could not be found."
+    redirect_to root_path
   end
 
   def find_ticket
