@@ -8,7 +8,7 @@ feature "Viewing tickets" do
                      :project => textmate_2,
                      :title => "Make it shiny!",
                      :description => "Gradients! Starbursts! Oh my!")
-    ticket.update_attribute(:user, user)
+    ticket.update_columns(:user => user)
 
     internet_explorer = Factory(:project, :name => "Internet Explorer")
     Factory(:ticket,

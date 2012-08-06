@@ -5,7 +5,7 @@ feature "Editing tickets" do
   let!(:user) { Factory(:confirmed_user) }
   let!(:ticket) do
     ticket = Factory(:ticket, :project => project)
-    ticket.update_attribute(:user, user)
+    ticket.update_columns(:user => user)
     ticket
   end
 
