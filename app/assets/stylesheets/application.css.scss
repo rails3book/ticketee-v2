@@ -119,8 +119,9 @@ ul#tickets li {
 }
 
 #permissions {
-  border: 1px solid #789B2F;
+  border: 1px solid #D8E1EB;
 }
+
 #permissions td, #permissions th {
   padding: 10px;
   margin: 0;
@@ -128,17 +129,15 @@ ul#tickets li {
 }
 
 #permissions thead th {
-  background: #DFFF77;
-  border-bottom: 1px solid #789B2F;
+  border-bottom: 1px solid #2F759B;
   padding: 10px;
 }
 
 #permissions tr.odd {
-  background: #F0FF91;
+  background: #EDF6FF;
 }
 
 #permissions tr.even {
-  background: #C2EC4B;
 }
 
 ul#tickets .state {
@@ -184,10 +183,12 @@ ul#tickets .state {
 
 #ticket #tags {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #ticket .tag {
-  background: #232323;
+  background: #1B7EE0;
+  font-size: 75%;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   color: white;
