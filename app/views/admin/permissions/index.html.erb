@@ -1,6 +1,6 @@
 <h2>Permissions for <%= @user.email %></h2>
 <%= form_tag update_user_permissions_path, :method => :put do %>
-  <table id='permissions'>
+  <table id='permissions' cellspacing='0'>
     <thead>
       <th>Project</th>
       <% permissions.each do |name, text| %>
