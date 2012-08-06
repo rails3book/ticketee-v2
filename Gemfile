@@ -7,8 +7,10 @@ gem 'journey', :git => "git://github.com/rails/journey"
 gem 'dynamic_form', '1.1.4'
 gem 'devise', :path => "vendor/gems/devise"
 gem 'cancan', '1.6.7'
-gem 'paperclip', '2.7.0'
+gem 'paperclip', :path => "vendor/gems/paperclip" #:git => "git://github.com/thoughtbot/paperclip"
 gem 'searcher', :git => "git://github.com/radar/searcher", :branch => "rails_4"
+
+gem 'orm_adapter', :path => "vendor/gems/orm_adapter"
 
 gem 'sqlite3'
 
@@ -31,7 +33,7 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl', '2.6.4'
   gem 'email_spec', '1.2.1'
-  gem 'database_cleaner'
+  gem 'database_cleaner', :path => "vendor/gems/database_cleaner"
   gem 'launchy'
 end
 
