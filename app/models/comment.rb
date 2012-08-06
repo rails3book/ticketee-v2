@@ -30,7 +30,7 @@ class Comment < ActiveRecord::Base
   def associate_tags_with_ticket
     if tag_names
       tags = tag_names.split(" ").map do |name|
-        Tag.where(:name => name).find_or_create
+        ::Tag.where(:name => name).first_or_create
       end
       self.ticket.tags += tags
       self.ticket.save
