@@ -39,7 +39,7 @@ class Ticket < ActiveRecord::Base
   def associate_tags
     if tag_names
       tag_names.split(" ").each do |name|
-        self.tags << Tag.find_or_create_by_name(name)
+        self.tags << Tag.where(:name => name).find_or_create
       end
     end
   end
