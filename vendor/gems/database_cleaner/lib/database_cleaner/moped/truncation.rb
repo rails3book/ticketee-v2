@@ -1,0 +1,25 @@
+module DatabaseCleaner
+  module Moped
+    module Truncation
+
+      def clean
+        if @only
+          collections.each { |c| session[c].find.remove_all if @only.include?(c) }
+        else
+          collections.each { |c| session[c].find.remove_all unless @tables_to_exclude.include?(c) }
+        end
+        true
+      end
+
+      private
+
+      def collections
+        session['system.namespaces'].find(:name => { '$not' => /system|\$/ }).to_a.map do |collection|
+          _, name = collection['name'].split('.', 2)
+          name
+        end
+      end
+
+    end
+  end
+end
