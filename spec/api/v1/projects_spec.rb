@@ -43,6 +43,10 @@ describe "/api/v1/projects", :type => :api do
   end
 
   context "creating a project" do
+    before do
+      user.admin = true
+      user.save
+    end
 
     let(:url) { "/api/v1/projects" }
 
@@ -52,12 +56,22 @@ describe "/api/v1/projects", :type => :api do
                             :name => "Inspector"
                           }
 
-      project = Project.find_by_name("Inspector")
+      project = Project.find_by_name!("Inspector")
       route = "/api/v1/projects/#{project.id}"
 
       last_response.status.should eql(201)
       last_response.headers["Location"].should eql(route)
       last_response.body.should eql(project.to_json)
+    end
+
+    it "unsuccessful JSON" do
+      post "#{url}.json", :token => token,
+                          :project => {}
+      last_response.status.should eql(422)
+      errors = {"errors" => {
+                 "name" => ["can't be blank"]
+               }}.to_json
+      last_response.body.should eql(errors)
     end
   end
 end
