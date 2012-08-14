@@ -3,6 +3,7 @@ class Api::V1::BaseController < ActionController::Base
 
   before_filter :authenticate_user
   before_filter :authorize_admin!, :except => [:index, :show]
+  before_filter :check_rate_limit
 
   private
     def authenticate_user
@@ -14,6 +15,15 @@ class Api::V1::BaseController < ActionController::Base
 
     def current_user
       @current_user
+    end
+
+    def check_rate_limit
+      if @current_user.request_count > 100
+        error = { :error => "Rate limit exceeded." }
+        respond_with(error, :status => 403)
+      else
+        @current_user.increment!(:request_count)
+      end
     end
 
     def authorize_admin!
