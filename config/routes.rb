@@ -5,6 +5,12 @@ Ticketee::Application.routes.draw do
         resources :tickets
       end
     end
+
+    namespace :v2 do
+      resources :projects do
+        resources :tickets
+      end
+    end
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }

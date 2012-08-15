@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "/api/v1/projects", :type => :api do
+describe "/api/v2/projects", :type => :api do
   let!(:user) { Factory(:user) }
   let!(:token) { user.authentication_token }
   let!(:project) { Factory(:project) }
@@ -15,30 +15,34 @@ describe "/api/v1/projects", :type => :api do
       Factory(:project, :name => "Access Denied")
     end
 
-    let(:url) { "/api/v1/projects" }
-    it "json" do 
+    let(:url) { "/api/v2/projects" }
+    let(:options) { { :except => :name, :methods => :title } }
+    it "JSON" do
       get "#{url}.json", :token => token
 
-      projects_json = Project.for(user).all.to_json
-      last_response.body.should eql(projects_json)
+      body = Project.for(user).to_json(options)
+
+      last_response.body.should eql(body)
       last_response.status.should eql(200)
 
       projects = JSON.parse(last_response.body)
-
       projects.any? do |p|
-        p["name"] == project.name
+        p["title"] == project.title
       end.should be_true
 
-      projects.any? do |p|
-        p["name"] == "Access Denied"
-      end.should be_false
+      projects.all? do |p|
+        p["name"].blank? 
+      end.should be_true
     end
 
     it "XML" do
       get "#{url}.xml", :token => token
-      last_response.body.should eql(Project.for(user).to_xml)
+
+      body = Project.for(user).to_xml(options)
+      last_response.body.should eql(body)
       projects = Nokogiri::XML(last_response.body)
-      projects.css("project name").text.should eql(project.name)
+      projects.css("project title").text.should eql(project.title)
+      projects.css("project name").text.should eql("")
     end
   end
 
@@ -48,7 +52,7 @@ describe "/api/v1/projects", :type => :api do
       user.save
     end
 
-    let(:url) { "/api/v1/projects" }
+    let(:url) { "/api/v2/projects" }
 
     it "successful JSON" do
       post "#{url}.json", :token => token,
@@ -57,7 +61,7 @@ describe "/api/v1/projects", :type => :api do
                           }
 
       project = Project.find_by_name!("Inspector")
-      route = "/api/v1/projects/#{project.id}"
+      route = "/api/v2/projects/#{project.id}"
 
       last_response.status.should eql(201)
       last_response.headers["Location"].should eql(route)
@@ -76,7 +80,7 @@ describe "/api/v1/projects", :type => :api do
   end
 
   context "show" do
-    let(:url) { "/api/v1/projects/#{project.id}"}
+    let(:url) { "/api/v2/projects/#{project.id}"}
  
     before do
       Factory(:ticket, :project => project)
@@ -101,7 +105,7 @@ describe "/api/v1/projects", :type => :api do
       user.save
     end
 
-    let(:url) { "/api/v1/projects/#{project.id}" }
+    let(:url) { "/api/v2/projects/#{project.id}" }
     it "successful JSON" do
       put "#{url}.json", :token => token,
                          :project => { 
@@ -132,7 +136,7 @@ describe "/api/v1/projects", :type => :api do
       user.save
     end
 
-    let(:url) { "/api/v1/projects/#{project.id}" }
+    let(:url) { "/api/v2/projects/#{project.id}" }
     it "JSON" do
       delete "#{url}.json", :token => token
       last_response.status.should eql(204)
