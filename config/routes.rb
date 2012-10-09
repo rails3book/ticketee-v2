@@ -13,7 +13,10 @@ Ticketee::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :registrations => "registrations" }
+  devise_for :users, :controllers =>
+    { :registrations => "registrations",
+      :omniauth_callbacks => "users/omniauth_callbacks"
+    }
 
   root :to => "projects#index"
 
@@ -57,6 +60,6 @@ Ticketee::Application.routes.draw do
     :as => 'confirm_user'
 
   put '/admin/users/:user_id/permissions',
-     :to => 'admin/permissions#update',
-     :as => :update_user_permissions
+    :to => 'admin/permissions#update',
+    :as => :update_user_permissions
 end

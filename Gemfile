@@ -4,10 +4,9 @@ gem 'rails', '3.2.8'
 gem 'dynamic_form', '1.1.4'
 gem 'devise', '2.1.0.rc'
 gem 'cancan', '1.6.7'
-gem 'paperclip', '2.7.0'
+gem 'paperclip', '2.8.0'
 gem 'searcher', :git => "git://github.com/radar/searcher"
-
-gem 'sqlite3'
+gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -22,6 +21,7 @@ gem 'debugger'
 group :test, :development do
   gem 'gmail', '0.4.0'
   gem 'rspec-rails', '~> 2.9'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -38,5 +38,5 @@ end
 
 group :production do
   gem 'therubyracer'
+  gem 'pg'
 end
-
