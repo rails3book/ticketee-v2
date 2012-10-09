@@ -1,6 +1,6 @@
 <div id='ticket'>
   <h2><%= @ticket.title %></h2>
-  <span id='author'>Created by <%= @ticket.user.email %></span><br>
+  <span id='author'>Created by <%= @ticket.user.display_name %></span><br>
   <% authorized?("edit tickets", @project) do %>
     <%= link_to "Edit Ticket", [:edit, @project, @ticket] %>
   <% end %>
