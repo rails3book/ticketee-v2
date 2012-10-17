@@ -27,10 +27,7 @@
       <% else %>
         <%= link_to "Sign up", new_user_registration_path %>
         <%= link_to "Sign in", new_user_session_path %>
-        Or use <%= link_to image_tag("icons/twitter_32.png"), 
-                   user_omniauth_authorize_path(:twitter),
-                   :id => "sign_in_with_twitter" %>
-        
+        Or use <%= auth_providers(:twitter, :github) %>
       <% end %>
     </li>
   </ul>
