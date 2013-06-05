@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature "Watching tickets" do
-  let!(:user) { Factory(:confirmed_user) }
-  let!(:project) { Factory(:project) }
-  let!(:ticket) { Factory(:ticket, :project => project,
+  let!(:user) { FactoryGirl.create(:confirmed_user) }
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:ticket) { FactoryGirl.create(:ticket, :project => project,
                                    :user => user) }
 
   before do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe CommentsController do
-  let(:user) { Factory(:confirmed_user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
   let(:project) { Project.create!(:name => "Ticketee") }
 
   let(:ticket) do

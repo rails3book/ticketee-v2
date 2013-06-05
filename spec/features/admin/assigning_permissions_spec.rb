@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 feature "Assigning permissions" do
-  let!(:admin) { Factory(:admin_user) }
-  let!(:user) { Factory(:confirmed_user) }
-  let!(:project) { Factory(:project) }
-  let!(:ticket) { Factory(:ticket, :project => project, :user => user) }
+  let!(:admin) { FactoryGirl.create(:admin_user) }
+  let!(:user) { FactoryGirl.create(:confirmed_user) }
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:ticket) { FactoryGirl.create(:ticket, :project => project, :user => user) }
 
   before do
     sign_in_as!(admin)

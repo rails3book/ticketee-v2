@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Creating Tickets" do
   before do
-    project = Factory(:project, :name => "Internet Explorer")
-    user = Factory(:confirmed_user, :email => "ticketee@example.com")
+    project = FactoryGirl.create(:project, :name => "Internet Explorer")
+    user = FactoryGirl.create(:confirmed_user, :email => "ticketee@example.com")
     define_permission!(user, "view", project)
     define_permission!(user, "tag", project)
     define_permission!(user, "create tickets", project)
