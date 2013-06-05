@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 feature "Gmail" do
-  let!(:alice) { Factory(:confirmed_user) }
-  let!(:me) { Factory(:confirmed_user, :email => "radarlistener@gmail.com") }
-  let!(:project) { Factory(:project) }
+  let!(:alice) { FactoryGirl.create(:confirmed_user) }
+  let!(:me) { FactoryGirl.create(:confirmed_user, :email => "radarlistener@gmail.com") }
+  let!(:project) { FactoryGirl.create(:project) }
   let!(:ticket) do
-    Factory(:ticket, :project => project,
+    FactoryGirl.create(:ticket, :project => project,
                      :user => me)
   end
 

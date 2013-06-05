@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 feature 'Editing a user' do
-  let!(:admin_user) { Factory(:admin_user) }
-  let!(:user) { Factory(:confirmed_user) }
+  let!(:admin_user) { FactoryGirl.create(:admin_user) }
+  let!(:user) { FactoryGirl.create(:confirmed_user) }
 
   before do
     sign_in_as!(admin_user)

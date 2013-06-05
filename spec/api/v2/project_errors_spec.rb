@@ -1,11 +1,11 @@
 require "spec_helper"
 
 describe "Project API errors", :type => :api do
-  context "standard users" do 
-    let(:user) { Factory(:user) }
+  context "standard users" do
+    let(:user) { FactoryGirl.create(:user) }
 
     it "cannot create projects" do
-      post "/api/v1/projects.json", 
+      post "/api/v1/projects.json",
         :token => user.authentication_token,
         :project => {
           :name => "Ticketee"
@@ -17,9 +17,9 @@ describe "Project API errors", :type => :api do
     end
 
     it "cannot view projects they do not have access to" do
-      project = Factory(:project)
+      project = FactoryGirl.create(:project)
 
-      get "/api/v1/projects/#{project.id}.json", 
+      get "/api/v1/projects/#{project.id}.json",
         :token => user.authentication_token
       error = { :error => "The project you were looking for" +
                           " could not be found." }

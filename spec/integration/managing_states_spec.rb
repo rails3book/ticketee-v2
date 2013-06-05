@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Managing states" do
   before do
     load Rails.root + "db/seeds.rb"
-    sign_in_as!(Factory(:admin_user))
+    sign_in_as!(FactoryGirl.create(:admin_user))
   end
 
   scenario "Marking a state as default" do

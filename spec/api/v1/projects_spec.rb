@@ -1,9 +1,9 @@
 require "spec_helper"
 
 describe "/api/v1/projects", :type => :api do
-  let!(:user) { Factory(:user) }
+  let!(:user) { FactoryGirl.create(:user) }
   let!(:token) { user.authentication_token }
-  let!(:project) { Factory(:project) }
+  let!(:project) { FactoryGirl.create(:project) }
 
   before do
     user.permissions.create!(:action => "view", :thing => project)
@@ -12,11 +12,11 @@ describe "/api/v1/projects", :type => :api do
   context "projects viewable by this user" do
 
     before do
-      Factory(:project, :name => "Access Denied")
+      FactoryGirl.create(:project, :name => "Access Denied")
     end
 
     let(:url) { "/api/v1/projects" }
-    it "json" do 
+    it "json" do
       get "#{url}.json", :token => token
 
       projects_json = Project.for(user).all.to_json
@@ -77,9 +77,9 @@ describe "/api/v1/projects", :type => :api do
 
   context "show" do
     let(:url) { "/api/v1/projects/#{project.id}"}
- 
+
     before do
-      Factory(:ticket, :project => project)
+      FactoryGirl.create(:ticket, :project => project)
     end
 
     it "JSON" do
@@ -104,7 +104,7 @@ describe "/api/v1/projects", :type => :api do
     let(:url) { "/api/v1/projects/#{project.id}" }
     it "successful JSON" do
       put "#{url}.json", :token => token,
-                         :project => { 
+                         :project => {
                             :name => "Not Ticketee"
                           }
 
@@ -117,7 +117,7 @@ describe "/api/v1/projects", :type => :api do
 
     it "unsuccessful JSON" do
       put "#{url}.json", :token => token,
-                         :project => { 
+                         :project => {
                            :name => ""
                           }
       last_response.status.should eql(422)

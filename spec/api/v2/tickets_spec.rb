@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "/api/v1/tickets", :type => :api do
-  let!(:project) { Factory(:project, :name => "Ticketee") }
-  let!(:user) { Factory(:user) }
+  let!(:project) { FactoryGirl.create(:project, :name => "Ticketee") }
+  let!(:user) { FactoryGirl.create(:user) }
 
   before do
     user.permissions.create!(:action => "view",

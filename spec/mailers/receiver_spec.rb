@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Receiver do
-  let!(:project) { Factory(:project) }
-  let!(:ticket_owner) { Factory(:user) }
-  let!(:ticket) { Factory(:ticket, :project => project,
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:ticket_owner) { FactoryGirl.create(:user) }
+  let!(:ticket) { FactoryGirl.create(:ticket, :project => project,
                                    :user => ticket_owner) }
-  let!(:commenter) { Factory(:user) }
+  let!(:commenter) { FactoryGirl.create(:user) }
   let(:comment) do
     Comment.new({
       :ticket => ticket,

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Creating Users" do
-  let!(:admin) { Factory(:admin_user) }
+  let!(:admin) { FactoryGirl.create(:admin_user) }
 
   before do
     sign_in_as!(admin)

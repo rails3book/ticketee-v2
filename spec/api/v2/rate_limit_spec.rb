@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "rate limiting", :type => :api do
-  let(:user) { Factory(:user) }
+  let(:user) { FactoryGirl.create(:user) }
 
   it "counts the user's requests" do
     user.request_count.should eql(0)

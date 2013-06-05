@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 feature "Deleting tags" do
-  let!(:user) { Factory(:confirmed_user) }
-  let!(:project) { Factory(:project) }
+  let!(:user) { FactoryGirl.create(:confirmed_user) }
+  let!(:project) { FactoryGirl.create(:project) }
   let!(:ticket) do
-    Factory(:ticket,
+    FactoryGirl.create(:ticket,
             :project => project,
             :tag_names => "this-tag-must-die",
             :user => user)

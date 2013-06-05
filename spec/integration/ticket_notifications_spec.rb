@@ -1,10 +1,10 @@
 require "spec_helper"
 feature "Ticket Notifications" do
-  let!(:alice) { Factory(:confirmed_user, :email => "alice@example.com") }
-  let!(:bob) { Factory(:confirmed_user, :email => "bob@example.com") }
-  let!(:project) { Factory(:project) }
+  let!(:alice) { FactoryGirl.create(:confirmed_user, :email => "alice@example.com") }
+  let!(:bob) { FactoryGirl.create(:confirmed_user, :email => "bob@example.com") }
+  let!(:project) { FactoryGirl.create(:project) }
   let!(:ticket) do
-    Factory(:ticket,
+    FactoryGirl.create(:ticket,
             :project => project,
             :user => alice)
   end
