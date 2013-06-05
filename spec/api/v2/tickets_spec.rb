@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "/api/v1/tickets", :type => :api do
-  let!(:project) { Factory(:project, :name => "Ticketee") }
-  let!(:user) { Factory(:user) }
+  let!(:project) { FactoryGirl.create(:project, :name => "Ticketee") }
+  let!(:user) { FactoryGirl.create(:user) }
 
   before do
     user.permissions.create!(:action => "view",
@@ -14,12 +14,12 @@ describe "/api/v1/tickets", :type => :api do
 
   it "XML" do
     get "#{url}.xml", :token => token
-    last_response.body.should eql(project.tickets.to_xml)
+    response.body.should eql(project.tickets.to_xml)
   end
 
   it "JSON" do
     get "#{url}.json", :token => token
-    last_response.body.should eql(project.tickets.to_json)
+    response.body.should eql(project.tickets.to_json)
   end
 end
 

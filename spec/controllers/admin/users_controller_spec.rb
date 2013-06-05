@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
-  let(:user) { Factory(:confirmed_user) }
+  let(:user) { FactoryGirl.create(:confirmed_user) }
 
   context "standard users" do
     before { sign_in(:user, user) }

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Creating Projects' do
   before do
-    sign_in_as!(Factory(:admin_user))
+    sign_in_as!(FactoryGirl.create(:admin_user))
     visit '/'
     click_link 'New Project'
   end
@@ -13,8 +13,8 @@ feature 'Creating Projects' do
     page.should have_content('Project has been created.')
 
     project = Project.find_by_name("TextMate 2")
-    page.current_url.should == project_url(project)
-    find("title").should have_content("TextMate 2 - Projects - Ticketee")
+    page.current_path.should == project_path(project)
+    page.title.should have_content("TextMate 2 - Projects - Ticketee")
   end
 
   scenario "can not create a project without a name" do

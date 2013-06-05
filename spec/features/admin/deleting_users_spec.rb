@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 feature 'Deleting users' do
-  let!(:admin_user) { Factory(:admin_user) }
-  let!(:user) { Factory(:user) }
+  let!(:admin_user) { FactoryGirl.create(:admin_user) }
+  let!(:user) { FactoryGirl.create(:user) }
 
   before do
     sign_in_as!(admin_user)

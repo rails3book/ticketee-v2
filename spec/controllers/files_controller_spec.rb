@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe FilesController do
-  let(:project) { Factory(:project) }
-  let(:ticket) { Factory(:ticket, :project => project) }
-  let(:good_user) { Factory(:confirmed_user) }
-  let(:bad_user) { Factory(:confirmed_user) }
+  let(:project) { FactoryGirl.create(:project) }
+  let(:ticket) { FactoryGirl.create(:ticket, :project => project) }
+  let(:good_user) { FactoryGirl.create(:confirmed_user) }
+  let(:bad_user) { FactoryGirl.create(:confirmed_user) }
 
   let(:path) { Rails.root + "spec/fixtures/speed.txt" }
   let(:asset) do

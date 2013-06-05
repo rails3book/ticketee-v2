@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 feature "Searching" do
-  let!(:user) { Factory(:confirmed_user) }
-  let!(:project) { Factory(:project) }
+  let!(:user) { FactoryGirl.create(:confirmed_user) }
+  let!(:project) { FactoryGirl.create(:project) }
   let!(:ticket_1) do
     state = State.create(:name => "Open")
-    Factory(:ticket,
+    FactoryGirl.create(:ticket,
             :title => "Create projects",
             :project => project,
             :user => user,
@@ -15,7 +15,7 @@ feature "Searching" do
 
   let!(:ticket_2) do
     state = State.create(:name => "Closed")
-    Factory(:ticket,
+    FactoryGirl.create(:ticket,
             :title => "Create users",
             :project => project,
             :user => user,
