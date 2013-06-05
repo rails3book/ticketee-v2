@@ -20,10 +20,10 @@ describe "/api/v1/projects", :type => :api do
       get "#{url}.json", :token => token
 
       projects_json = Project.for(user).all.to_json
-      last_response.body.should eql(projects_json)
-      last_response.status.should eql(200)
+      response.body.should eql(projects_json)
+      response.status.should eql(200)
 
-      projects = JSON.parse(last_response.body)
+      projects = JSON.parse(response.body)
 
       projects.any? do |p|
         p["name"] == project.name
@@ -36,8 +36,8 @@ describe "/api/v1/projects", :type => :api do
 
     it "XML" do
       get "#{url}.xml", :token => token
-      last_response.body.should eql(Project.for(user).to_xml)
-      projects = Nokogiri::XML(last_response.body)
+      response.body.should eql(Project.for(user).to_xml)
+      projects = Nokogiri::XML(response.body)
       projects.css("project name").text.should eql(project.name)
     end
   end
@@ -59,19 +59,19 @@ describe "/api/v1/projects", :type => :api do
       project = Project.find_by_name!("Inspector")
       route = "/api/v1/projects/#{project.id}"
 
-      last_response.status.should eql(201)
-      last_response.headers["Location"].should eql(route)
-      last_response.body.should eql(project.to_json)
+      response.status.should eql(201)
+      response.headers["Location"].should eql(route)
+      response.body.should eql(project.to_json)
     end
 
     it "unsuccessful JSON" do
       post "#{url}.json", :token => token,
                           :project => {}
-      last_response.status.should eql(422)
+      response.status.should eql(422)
       errors = {"errors" => {
                  "name" => ["can't be blank"]
                }}.to_json
-      last_response.body.should eql(errors)
+      response.body.should eql(errors)
     end
   end
 
@@ -85,10 +85,10 @@ describe "/api/v1/projects", :type => :api do
     it "JSON" do
       get "#{url}.json", :token => token
       project_json = project.to_json(:methods => "last_ticket")
-      last_response.body.should eql(project_json)
-      last_response.status.should eql(200)
+      response.body.should eql(project_json)
+      response.status.should eql(200)
 
-      project_response = JSON.parse(last_response.body)
+      project_response = JSON.parse(response.body)
 
       ticket_title = project_response["last_ticket"]["title"]
       ticket_title.should_not be_blank
@@ -108,8 +108,8 @@ describe "/api/v1/projects", :type => :api do
                             :name => "Not Ticketee"
                           }
 
-      last_response.status.should eql(204)
-      last_response.body.should eql("")
+      response.status.should eql(204)
+      response.body.should eql("")
 
       project.reload
       project.name.should eql("Not Ticketee")
@@ -120,9 +120,9 @@ describe "/api/v1/projects", :type => :api do
                          :project => {
                            :name => ""
                           }
-      last_response.status.should eql(422)
+      response.status.should eql(422)
       errors = { :errors => { :name => ["can't be blank"] } }
-      last_response.body.should eql(errors.to_json)
+      response.body.should eql(errors.to_json)
     end
   end
 
@@ -135,7 +135,7 @@ describe "/api/v1/projects", :type => :api do
     let(:url) { "/api/v1/projects/#{project.id}" }
     it "JSON" do
       delete "#{url}.json", :token => token
-      last_response.status.should eql(204)
+      response.status.should eql(204)
     end
   end
 end

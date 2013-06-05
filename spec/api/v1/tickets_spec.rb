@@ -14,12 +14,12 @@ describe "/api/v1/tickets", :type => :api do
 
   it "XML" do
     get "#{url}.xml", :token => token
-    last_response.body.should eql(project.tickets.to_xml)
+    response.body.should eql(project.tickets.to_xml)
   end
 
   it "JSON" do
     get "#{url}.json", :token => token
-    last_response.body.should eql(project.tickets.to_json)
+    response.body.should eql(project.tickets.to_json)
   end
 end
 
