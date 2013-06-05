@@ -17,7 +17,7 @@ describe Receiver do
   it "parses a reply from a comment update into a comment" do
     original = Notifier.comment_updated(comment, ticket_owner)
     reply_text = "This is a brand new comment"
-    reply = Mail.new(:from => "user@ticketee.com",
+    reply = Mail.new(:from => commenter.email,
                      :subject => "Re: #{original.subject}",
                      :body => %Q{#{reply_text}
                           #{original.body}
