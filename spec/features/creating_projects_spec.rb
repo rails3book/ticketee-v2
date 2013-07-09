@@ -22,4 +22,11 @@ feature 'Creating Projects' do
     page.should have_content("Project has not been created.")
     page.should have_content("Name can't be blank")
   end
+
+  scenario "should have the correct title" do
+    fill_in 'Name', :with => 'Sublime 3'
+    click_button 'Create Project'
+    page.should have_content('Project has been created.')
+    page.title.should have_content("Sublime 3 - Projects - Ticketee")
+  end
 end
